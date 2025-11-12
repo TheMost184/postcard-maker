@@ -56,7 +56,7 @@ export default function Navbar() {
         {open && (
           <div className="sm:hidden pb-3 flex flex-col gap-1">
             {navItem("/book", "เปิดแบบหนังสือ")}
-            {navItem("/book", "เปิดแบบหนังสือ")}
+            {navItem("/postcard", "สร้างโปสการ์ด")}
           </div>
         )}
       </nav>

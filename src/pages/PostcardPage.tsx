@@ -152,6 +152,8 @@ function CanvasImage({
    4) แอปหลัก
 ========================= */
 export default function App() {
+  const postcardWidth = 900;
+  const postcardHeight = 600;
   const stageRef = useRef<any>(null);
   
   // ✅ สำหรับ responsive
@@ -162,16 +164,16 @@ export default function App() {
 
   // คำนวณสเกลตามความกว้าง container
   useLayoutEffect(() => {
-    const fit = () => {
-      const cw = containerRef.current?.offsetWidth ?? postcardWidth;
-      const s = Math.min(cw / postcardWidth, 2); // ไม่ขยายเกิน 100%
-      setScale(s);
-      setStageSize({ width: postcardWidth * s, height: postcardHeight * s });
-    };
-    fit();
-    window.addEventListener("resize", fit);
-    return () => window.removeEventListener("resize", fit);
-  }, []);
+  const fit = () => {
+    const vw = Math.min(window.innerWidth - 24, postcardWidth);
+    const s = Math.min(vw / postcardWidth, 1); // ย่อเมื่อจอเล็ก, ไม่ขยายเกิน 1
+    setScale(s);
+    setStageSize({ width: postcardWidth * s, height: postcardHeight * s });
+  };
+  fit();
+  window.addEventListener("resize", fit);
+  return () => window.removeEventListener("resize", fit);
+}, [postcardWidth, postcardHeight]);
   
   const [items, setItems] = useState<Item[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -248,9 +250,6 @@ function next(cat: string) {
     }, 800); // หน่วงนิดนึงเพื่อให้แน่ใจว่าภาพโหลดแล้ว
   };
 
-  const postcardWidth = 900;
-  const postcardHeight = 600;
-
   
   const handleSaveClick = () => {
     if (isConfirming) {
@@ -290,13 +289,15 @@ function next(cat: string) {
 
       {/* พื้นที่โปสการ์ด */}
 {/* พื้นที่โปสการ์ด (responsive) */}
-    <div ref={containerRef} className="w-full max-w-[900px] mx-auto flex justify-center touch-none border rounded-lg shadow bg-white">
+    <div
+  ref={containerRef}
+  className="w-full mx-auto flex justify-center touch-none border rounded-lg shadow bg-white px-2 sm:px-4"
+  style={{ maxWidth: `min(${postcardWidth}px, 100vw - 16px)` }}
+>
       <Stage
         ref={stageRef}
         width={stageSize.width}
         height={stageSize.height}
-        x={(stageSize.width - postcardWidth * scale) / 2}
-        y={(stageSize.height - postcardHeight * scale) / 2}
         scaleX={scale}
         scaleY={scale}
         onMouseDown={(e) => {
@@ -375,7 +376,7 @@ function next(cat: string) {
           onClick={() => addImage(src)}
           className="border rounded hover:shadow-md p-1 bg-white min-w-24"
         >
-          <img src={src} className="w-32 h-32 object-cover rounded" />
+          <img src={src} className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover rounded" />
         </button>
       ))}
     </div>   
