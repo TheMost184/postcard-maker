@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* ✅ ใส่ override ฟอนต์ไว้ "ท้ายไฟล์" เสมอ เพื่อชนะทุกอันด้านบน */
+html, body, #root {
+  font-family: "Kodchasan", system-ui, sans-serif !important;
+}
+
+/* ไล่สีเลื่อนไปมา */
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-animated-gradient {
+  background-image: linear-gradient(
+    120deg,
+    rgba(242, 222, 195, 0.6),   /* orange-400-ish */
+    rgba(223, 196, 154, 0.6),  /* orange-500-ish */
+    rgba(199, 157, 100, 0.6)
+  );
+  background-size: 400% 400%;   /* เคลื่อนไหวกว้างขึ้น */
+  background-repeat: no-repeat;
+  animation: gradient-shift 5s ease-in-out infinite; /* เร็วขึ้น */
+  will-change: background-position;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
