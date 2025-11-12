@@ -275,7 +275,7 @@ function next(cat: string) {
       rgba(236, 213, 179, 0.34)
     `,
   }}>
-      <h1 className="text-3xl font-bold text-gray-800 mt-2">ออกแบบโปสการ์ด</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mt-2 text-center">ออกแบบโปสการ์ด</h1>
 
       {/* ปุ่มเครื่องมือ */}
       <div className="flex gap-2">
@@ -285,6 +285,17 @@ function next(cat: string) {
       >
         {isConfirming ? "Click again to confirm" : "Save PNG"}
         </button>
+
+          {selectedId && (
+    <button
+      className="px-4 py-2 rounded bg-red-500 text-black hover:bg-red-600"
+      onClick={() =>
+        setItems((prev) => prev.filter((i) => i.id !== selectedId))
+      }
+    >
+      Delete
+    </button>
+  )}
       </div>
 
       {/* พื้นที่โปสการ์ด */}
@@ -357,14 +368,7 @@ function next(cat: string) {
       </div>
 
       {/* แกลเลอรี: แสดงตามหมวดที่เลือก */}
-      <div className="flex items-center gap-3">
-  <button
-    onClick={() => prev(activeCat)}
-    className="px-3 py-2 border rounded bg-white hover:bg-gray-50"
-    aria-label="Previous"
-  >
-    ←
-  </button>
+  <div className="flex items-center gap-3 mt-2">
 
   {/* แกลเลอรี: แนวนอนเลื่อนบนมือถือ */}
   <div className="w-full max-w-[900px] overflow-x-auto pb-2">
@@ -381,15 +385,25 @@ function next(cat: string) {
       ))}
     </div>   
   </div>
-
-  <button
-    onClick={() => next(activeCat)}
-    className="px-3 py-2 border rounded bg-white hover:bg-gray-50"
-    aria-label="Next"
-  >
-    →
-  </button>
 </div>
+
+      {/* ลูกศรเลื่อน ซ้าย-ขวา */}
+  <div className="flex gap-4 justify-center mt-1">
+    <button
+      onClick={() => prev(activeCat)}
+      className="px-4 py-2 border rounded bg-white hover:bg-gray-50 shadow"
+      aria-label="Previous"
+    >
+      ←
+    </button>
+    <button
+      onClick={() => next(activeCat)}
+      className="px-4 py-2 border rounded bg-white hover:bg-gray-50 shadow"
+      aria-label="Next"
+    >
+      →
+    </button>
+  </div>
       {showQuizMessage && (
   <div className="mt-6 text-center animate-fade-in">
     <p className="text-xl font-semibold text-gray-800 mb-2">
