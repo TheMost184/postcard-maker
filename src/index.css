@@ -5,7 +5,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
+  color-scheme: light !important;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -66,6 +66,7 @@ button:focus-visible {
 /* ✅ ใส่ override ฟอนต์ไว้ "ท้ายไฟล์" เสมอ เพื่อชนะทุกอันด้านบน */
 html, body, #root {
   font-family: "Kodchasan", system-ui, sans-serif !important;
+    background-color: #F8F1E3 !important; /* หรือสีพื้นหลังของคุณ */
 }
 
 /* ไล่สีเลื่อนไปมา */
