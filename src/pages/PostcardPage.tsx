@@ -7,6 +7,7 @@ type GalleryItem = { src: string; name: string };
 const CATEGORY_GLOBS: Record<string, Record<string, any>> = {
   "หมวด 1": import.meta.glob("../assets/images1/*.{png,jpg,jpeg,gif,svg}", { eager: true }),
   "หมวด 2": import.meta.glob("../assets/images2/*.{png,jpg,jpeg,gif,svg}", { eager: true }),
+  "หมวด 3": import.meta.glob("../assets/images3/*.{png,jpg,jpeg,gif,svg}", { eager: true }),
   // ตัวอย่างเพิ่มหมวด:
   // "หมวด 3": import.meta.glob("./assets/images3/*.{png,jpg,jpeg,gif,svg}", { eager: true }),
 };
