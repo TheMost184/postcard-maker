@@ -281,7 +281,7 @@ function next(cat: string) {
       {/* ปุ่มเครื่องมือ */}
       <div className="flex gap-2">
         <button
-          className="px-4 py-2 rounded bg-blue-500 text-black hover:bg-blue-600 "
+          className="px-4 py-2 rounded bg-white border border-gray-300 text-black shadow hover:bg-gray-100 "
         onClick={handleSaveClick}
       >
         {isConfirming ? "Click again to confirm" : "Save PNG"}
@@ -357,10 +357,10 @@ function next(cat: string) {
             key={cat}
             onClick={() => setActiveCat(cat)}
             className={[
-              "px-3 py-1.5 rounded-full border",
+              "px-3 py-1.5 rounded-full border bg-white shadow",
               activeCat === cat
-                ? "bg-blue-600 text-black border-black-600"
-                : "bg-white text-gray-700 hover:bg-gray-50",
+                ? "border-[#533615] text-[#967652] font-bold"
+                : "border-gray-300 text-gray-700 hover:bg-gray-50",
             ].join(" ")}
           >
             {cat}
